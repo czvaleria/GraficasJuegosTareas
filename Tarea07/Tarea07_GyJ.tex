@@ -1,0 +1,445 @@
+\documentclass[12pt,letterpaper,fleqn]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{mdwlist}
+\usepackage{ upgreek }
+\usepackage{ stmaryrd }
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox} 
+\usepackage{tabu}
+\usepackage{mathtools}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{listings}
+\usepackage{courier}
+
+
+\begin{document}
+
+\include{Portada/portada}
+    
+\begin{center}
+    \LARGE{\textbf{Tarea 07}}
+\end{center}
+
+\begin{enumerate}
+      \item Una gr\'afica $G$ es autocomplementaria si $G \cong \overline{G}$.
+        Demuestre que si $G$ es autocomplementaria, entonces $|V|
+        \stackrel{4}{\equiv} 0$ o $|V| \stackrel{4}{\equiv} 1$.
+        
+        $\underline{Respuesta:}$
+
+        Supongamos que $G$ es una gráfica autocomplementaria, es decir aquella gráfica que es isomorfa a su complemento.
+
+        Por definición, el complemento de $G$, tiene los mismos vértices que $G$, pero sus aristas son las que no están en $G$. Es decir, si $(u,v)$ es una arista de $G$, pero no lo es en $\overline{G}$.
+
+        Por definición, si existe un isomorfismo entre $G$ y $\overline{G}$, implica que no solo haya una correspondencia uno a uno entre los vértices de las gráficas, si no también entre sus aristas.
+        
+        Entonces ambos tienen el mismo número de aristas:
+        \begin{center}
+            $|E(G)|=|E(\overline{G})|$
+        \end{center}
+
+        Ahora como $G$ y $\overline{G}$ son disjuntos y cubren todas las aristas que puede tener la gráfica completa $G$ podemos decir que:
+        
+        \begin{center}
+            $|E(G)|+|E(\overline{G})| = \binom{n}{2}$
+            
+            $\Rightarrow$ $|E(G)|= \frac{\binom{n}{2}}{2}$ Por definición de gráfica autocomplementaria.
+            
+            $\Rightarrow |E(G)|=\frac{\frac{n(n-1)}{2}}{2}$
+            
+            $\Rightarrow |E(G)|=\frac{n(n-1)}{4}$
+        \end{center}
+
+        \begin{enumerate}
+            \item Supongamos que $|V|\stackrel{4}{\equiv} 0$ es verdadero.
+            
+            Quiere decir que hay algún $k \in \mathbb{Z}$ para $n=4k$.
+            
+            Entonces $n$ puede ser $4,8,12,16,...$
+
+            Sustituimos algún valor de $n$ en la operación de $|E(G)|=\frac{n(n-1)}{4}$
+
+            \begin{itemize}
+                \item Para $n=4$
+
+                $\frac{n(n-1)}{4} \Rightarrow \frac{4(4-1)}{4}=\frac{4(3)}{4} =\frac{12}{4}=3$
+
+                \item Para $n=8$
+
+                $\frac{n(n-1)}{4} \Rightarrow \frac{8(8-1)}{4}=\frac{8(7)}{4} =\frac{56}{4}=14$
+
+                \item Para $n=12$
+
+                $\frac{n(n-1)}{4} \Rightarrow \frac{12(12-1)}{4}=\frac{12(11)}{4} =\frac{132}{4}=33$
+
+            \end{itemize}
+
+            $\therefore |V|\stackrel{4}{\equiv} 0$ es verdadero $\blacksquare$
+
+            \item Supongamos que $|V|\stackrel{4}{\equiv} 1$ es verdadero.
+
+            Quiere decir que hay algún $k \in \mathbb{Z}$ para $n=4k+1$
+
+            Entonces $n$ puede ser $1,5,9,13,...$
+
+            Sustituimos algún valor de $n$ en la operación de $|E(G)|=\frac{n(n-1)}{4}$
+
+            \begin{itemize}
+                \item Para $n=1$
+
+                $\frac{n(n-1)}{4} \Rightarrow \frac{1(1-1)}{4}=\frac{1(0)}{4} =\frac{0}{4}=0$
+
+                \item Para $n=5$
+
+                $\frac{n(n-1)}{4} \Rightarrow \frac{5(5-1)}{4}=\frac{5(4)}{4} =\frac{20}{4}=5$
+
+                \item Para $n=9$
+
+                $\frac{n(n-1)}{4} \Rightarrow \frac{9(9-1)}{4}=\frac{9(8)}{4} =\frac{72}{4}=18$
+            \end{itemize}
+
+             $\therefore |V|\stackrel{4}{\equiv} 1$ es verdadero $\blacksquare$
+     
+        \end{enumerate}        
+        
+          
+  \item Un {\em orden topol\'ogico} de una digr\'afica $D$ es un orden lineal de
+    sus v\'ertices tal que para cada flecha $a$ de $D$, la cola de $a$ precede a
+    su cabeza en el orden.
+    \begin{enumerate}
+      \item Demuestre que toda digr\'afica ac\'iclica tiene al menos una fuente
+        (v\'ertice de ingrado $0$) y un sumidero (v\'ertice de exgrado $0$).
+
+    \underline{Respuesta:} Sea $D$ una digráfica acíclica. Es decir, no contiene ciclos dirigidos.
+    
+        Primero, demostraremos que existe al menos una fuente.
+        
+        Supongamos por contradicción que todos los vértices tienen al menos una arista entrante. Es decir, para todo vértice $v$ existe algún vértice $u$ tal que $(u,v)$.
+        
+        Consideremos la  trayectoria dirigida de longitud máxima en $D$ $(v_{0}, v_{1}), (v_{1}, v_{2}), \dots, (v_{k-1}, v_{k})$
+        
+        Como $v_0$ es el primer vértice de la trayectoria y por hipótesis tiene al menos una arista entrante, existe un vértice $u$ tal que también está $(u, v_{0})$. Entonces, podemos extender la trayectoria: $(u, v_{0}), (v_{0}, v_{1}),…, (v_{k-1}, v_{k})$. Esto contradice el hecho de que la trayectoria era de longitud máxima. Por lo tanto, debe existir al menos un vértice sin aristas entrantes.
+                
+        $\therefore$ Existe una fuente.
+        
+        Ahora, demostraremos que existe al menos un sumidero.
+        
+        Supongamos por contradicción que todos los vértices tienen al menos una arista saliente. Es decir, para todo vértice $v$ existe algún vértice $w$ tal que $(v, w)$. 
+        
+        Tomamos nuevamente una trayectoria dirigida de longitud máxima $(v_0, v_1), (v_1, v_2), \dots, (v_{k-1}, v_k)$. El vértice $v_k$ es el último de la trayectoria. Por hipótesis, tiene al menos una arista saliente, es decir, existe $w$ tal que existe el arco $(v_k, w) $. Entonces podemos extender la trayectoria $(v_0, v_1), (v_1, v_2), \dots, (v_{k-1}, v_k), (v_k, w)$. Esto contradice el hecho de que la trayectoria era de longitud máxima. Por lo tanto, debe existir al menos un vértice sin aristas salientes.
+        
+        $\therefore$ Existe un sumidero.
+        
+        Por lo tanto, toda digráfica acíclica tiene al menos una fuente y al menos un sumidero. $\bigstar$
+        
+      \item Deduzca que una digr\'afica admite un orden topol\'ogico si y s\'olo
+        si es ac\'iclica.
+
+        \underline{Respuesta:} Sea $D$ una digráfica.
+
+        $\Longrightarrow )$ Supongamos $D$ tiene un orden topológico en sus vértices. Esto significa que para toda flecha $(v_{i}, v_{j})$, se cumple que $i<j$, es decir, las flechas solo están dirigidas en orden.
+        
+        Por demostrar:  $D$ es acíclica.
+    
+        Procedemos por contradicción. Supongamos que $D$ tiene un ciclo $(v_{1}, v_{2}, …, v_{k}, v_{1})$. Como es un ciclo, los vértices se repiten, y en particular $v_{1}$ aparece al inicio y al final. Entonces existe una flecha $(v_{k}, v_{1})$ con la que deberíamos tener $k<1$, sin embargo, no cumple el orden topológico (de hipótesis), ya que no es posible que una flecha este orientada de regreso, pues esta debe de orientarse a un siguiente vértice. Así, no puede haber ciclos en $D$.
+    
+        $\therefore$ Es acíclica.
+    
+        $\Longleftarrow) $ Sea $D$ una digráfica acíclica.
+        
+        Por demostrar: $D$ tiene un orden topológico.
+    
+        Procedemos por inducción sobre el número de vértices de $D$.
+    
+        Casos base:
+        \begin{itemize}
+            \item Caso 1: Sea $n = 1$, $D$ tiene un sólo vértice y ningún arco, entonces el orden se cumple inmediato.
+            \item Caso 2: Sea n = 2, entonces tenemos dos casos:
+            \begin{itemize}
+                \item Si no hay arcos, entonces el orden (o cualquier otro) se cumple inmediato.
+                \item Si hay un arco $(v_{1}, v_{2})$, entonces el orden es $v_{1}, v_{2}$ , el cual cumple $i < j$ pues $v_{1}$ debe aparecer antes de $v_{2}$ .       
+            \end{itemize}
+        \end{itemize}
+            
+        Hipótesis de Inducción: Supongamos que toda digráfica acíclica con $n = m$ vértices admite un orden topológico.
+        
+        Paso Inductivo: Sea $D$ una digráfica sin ciclos con $m + 1$ vértices.
+        
+        Por demostrar: Toda digráfica sin ciclos dirigidos con $n=m + 1$ vértices también tiene un orden topológico.
+        
+        Como $D$ es aciclica (por hipótesis), entonces debe existir al
+        menos un vértice $v$ con $ingrado=0$, es decir, es una fuente. De lo contrario, si todos los vértices tuvieran al menos un arco entrante, podríamos construir un ciclo dirigido siguiendo los arcos entrantes, lo que contradice la hipótesis.
+        
+        Ahora construyamos una nueva digráfica $D’$. Eliminamos el vértice $v$ y todos sus arcos salientes, con lo que obtenemos a $D’$ , la cual tiene $m$ vértices y es acíclica, pues eliminar vértices no crea ciclos.
+        
+        Por H.I, $D’$ tiene un orden topológico $(v_{1} , v_{2}, ..., v_{m})$ en los vértices de $D’$ tal que todo arco $(v_{i}, v_{j})$ cumple $i<j$.
+        
+        Ahora, insertemos el vértice $v$ al inicio del orden. Entonces tenemos $(v, v_{1} , v_{2} , ..., v_{m})$. Como $v$ es una fuente, no hay arcos entrantes a el en $D$. En particular, los únicos posibles arcos que lo involucran son de la forma $(v, v_{i})$ y estos se orientan hacia un siguiente vértice en el orden, pues $v$ aparece antes que cualquier otro vértice.
+        
+        $\therefore$ $D$ tiene un orden topológico. 
+
+        Por lo tanto, toda digráfica acíclica tiene al menos una fuente y un sumidero. $\bigstar$
+        
+      \item Exhiba un algoritmo de tiempo a lo m\'as cuadr\'atico para encontrar
+        un orden topol\'ogico en una digr\'afica ac\'iclica.
+    
+    \underline{Respuesta:} Proponemos el siguiente algortimo en el que vamos iterando sobre los vértices: eliminamos los vértices que tienen ingrado $0$ (las fuentes), uno por uno, actualizamos los grados de los demás vértices, y lo agregamos al orden. 
+    \\
+    
+    Input: Una digráfica acíclica G, sus V vértices y A arcos.
+    
+    Output: Una lista con los vértices en orden topológico.
+    
+    \\
+    \begin{flushleft}
+    1. orden $\longleftarrow$ [ ] ; Inicializamos una lista vacía para guardar el orden topológico. \\
+    
+    2. ingrado $\longleftarrow$ [ ] ; Creamos una lista \textit{ingrado} para guardar cuántas flechas entran a cada vértice, y los inicializamos en $0$. \\
+    
+    3. \textbf{for each} vértice $v$ en $V(G)$ \textbf{do} \\
+    
+    4.\hspace{1em} ingrado[$v$] $\longleftarrow$ 0 \\
+    
+    5. \textbf{for each} arco $(u,v)$ en $G$ \textbf{do} ; Recorremos todos los arcos $(u,v)$ de $G$ y actualizamos los ingrados. \\
+    
+    6.\hspace{1em} ingrado[$v$] $\longleftarrow$ ingrado[$v$] $+ 1$ \\
+    
+    7. \textbf{while} exista un vértice $v$ con $ingrado = 0$ \textbf{do} ; Ahora trabajamos con los vértices que tienen $ingrado = 0$ (fuentes). Esto se debe a que en toda digráfica acíclica siempre existe al menos un vértice sin flechas entrantes (una fuente), pues si no existiera tal vértice, podríamos construir un ciclo. \\
+    
+    8.\hspace{1em} añadir $v$ a [orden] ; Añadimos al vértice a la lista [orden] \\
+    
+    9.\hspace{1em} eliminar $v$ de $G$ ; Eliminamos al vértice de la gráfica para marcarlo como procesado. \\
+    
+    10.\hspace{1em} \textbf{for each} vértice $w$ al que $v$ apunta \textbf{do} ; Actualizamos los ingrados disminuyendo su ingrado en 1 para cada vértice al que apunta $v$. \\
+    
+    11.\hspace{2em} ingrado[$w$] $\longleftarrow$ ingrado[$w$] $- 1$ \\
+    
+    12. \textbf{if} longitud de [orden] $=$ $|V(G)|$ \textbf{then} ; Verificamos si el orden es válido, es decir, si procesamos todos los vértices. \\
+    
+    13.\hspace{1em} \textbf{return} [orden] ; El orden es válido, no hay ciclos. \\
+    
+    14. \textbf{else return} [ ] ; Había un ciclo, pues quedó algún vértice con $ingrado > 0$. \\
+    
+    15. El proceso termina.
+    \end{flushleft}
+
+    Esto se repite $n$ veces, porque hay $n$ vértices, por lo que la parte de verificar si un vértice tiene ingrado cero es $O(n)$ y la parte de eliminar los vértices y actulizar el ingrado es $O(n)$. Por lo tanto, su complejidad es $O(n^2)$. $\bigstar$
+        \end{enumerate}
+
+  \item Demuestre que cada uno de ni los siguientes problemas est\'a en la clase
+    $NP$ exhibiendo un certificado y un algoritmo de tiempo polinomial para
+    verificar el certificado (escriba el algoritmo utilizando pseudo c\'odigo
+    como el visto en clase; s\'olo est\'a permitido el uso de las estructuras de
+    control {\bf if}, {\bf while} y {\bf for}).   Demuestre que su algoritmo
+    usa tiempo polinomial.
+    \begin{enumerate}
+      \item \textsc{Hamilton Cycle}.
+      \underline{Respuesta:} Queremos ver que existe un ciclo que pase por todos los vértices exactamente una vez.
+
+      1. if el |C| no es igual al |V| then
+      \\      
+      2. \hspace{1em} return False ; Esto porque falta o sobran vértices.
+      \\
+      3. if hay vértices repetidos en C then
+      \\
+      4. \hspace{1em} return False; Porque no se puede repetir ciudades en el recorrido.
+      \\
+      5. for each par de vértices consecutivos en C
+      \\
+      6.\hspace{1em} if no hay una arista entre ellos en G then 
+      \\
+      7.\hspace{2em} return False
+      \\
+      8. if no hay arista entre el último y el primer vértice de C then
+      \\
+      9. \hspace{1em} return False; Porque no termina donde empieza
+      \\
+      10. return True. ; Es un ciclo hamiltoniano válido.
+      \\
+    
+    Esto se repite $n$ veces, porque hay $n$ vértices, por lo que la parte de verificar repeticiones es $O(n)$ y la parte de las arsitas que son consecutivas igual es $O(n)$. Por lo tanto, su complejidad es $O(n^2)$. $\bigstar$
+    \\
+
+      \item \textsc{Vertex Cover}.
+      \underline{Respuesta:} Queremos ver qué existe un conjunto de vértices $S$ de tamaño $\leq k$ que cubra todas las aristas, es decir, que toda arista tiene al menos un extremo en $S$. 
+
+      Input: Una gráfica G con sus V vértices y E aristas, un conjunto S y un entero k. 
+
+        Output: True si $S$ el tamaño es menor a K y False en caso contrario.
+        
+        1. if el tamaño de $S > k$ then
+        \\
+        2. \hspace{1em} return False ; S no cumple el límite de tamaño.
+        \\
+        3. for each arista $(u, v)$ en E
+        \\
+        4. \hspace{1em} if  u no está en S y v no está S then
+        \\
+        5. \hspace{2em} return False ; Porque $(u, v)$ no está cubierta por S.
+        \\
+        6. \hspace{2em} return True 
+        \\
+        7. return True ; Es que todas las aristas están cubiertas por S.
+        \\
+        
+        Esto se repite $n$ veces, porque hay $n$ vértices. Por lo tanto, su complejidad es $O(n)$. $\bigstar$
+
+        
+      \item \textsc{Colouring}.
+      \underline{Respuesta:} Proponemos el siguiente algoritmo para ver si es posible colorear el grafo con $\leq k$ colores, sin que vértices adyacentes compartan color. 
+
+    Input: Una gráfica $G$ con sus $V$ vértices y $E$ aristas, una lista $C$ con la asignación de coloraciones y un entero $k$.
+    
+    Output: True si $C$ es una coloración válida con $\leq k$ colores o False en caso contrario.
+
+1. if el número de colores en $C > k$ then 
+\\
+2. return False ; Pues se usaron más colores de los permitidos.
+\\
+3. for each arista $(u, v)$ en E do
+\\
+4. \hspace{1em} if C[u] == C[v] then
+\\
+5. \hspace{2em} return False ; Porque hay vecinos con el mismo color. 
+\\
+6. \hspace{2em} else return True ; La coloración es válida.
+
+El algoritmo recorre cada $n$ arista una  vez, entonces el algoritmo es $O(n)$. $\bigstar$
+
+      \item \textsc{Dominating Set}.
+      \underline{Respuesta:} Queremos ver que existe un conjunto $S$ de tamaño$\leq k$ tal que todo vértice fuera del conjunto es adyacente a algún vértice en $S$. $\bigstar$
+      
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Puntos extra}
+\begin{enumerate}
+  \item Demuestre que toda digr\'afica sin lazos admite una
+    descomposici\'on en dos digr\'aficas ac\'iclicas, es decir, que
+    existen $D_1$ y $D_2$ subdigr\'aficas de $D$, ac\'iclicas y
+    tales que $D_1 \cup D_2 = D$ y $A_{D_1} \cap A_{D_2} =
+    \varnothing$.
+
+    $\underline{Respuesta:}$
+
+    Sea $D = (V,A)$ una digráfica sin lazos. 
+
+    Usando inducción sobre el número de aristas $m=|E|$.
+
+    $\underline{Caso}$ $\underline{Base}: m=0$
+
+    Si $D$ no tiene asistas, entonces la digrafica $D$ es solo un conjunto de vértices sin adyacencia. En este caso, tanto $D_1$ como $D_2$ son simplemente el mismo grado $D$, que es acíclico por definición.
+
+    $\therefore D_1 = D_2 = D = (V,\varnothing)$. Ambas subgráficas son acíclicas, $A_1\cap A_2=\varnothing=A$. Cumpliéndose así el las descomposiciones en el enunciado.
+
+    $\underline{Hipotesis}$ $\underline{Inductiva}:$
+
+    Es cierto que para toda digráfica sin lazos con $m$ aristas, existe una descomposición en dos gráficas acíclicas.
+    
+    P.d. Que para una digráfica $D=(V,A)$ con $m+1$ aristas.
+
+    Sea $e=(u,v) \in A$ una arista arbitraria de la digráfica $D$ y la eliminamos. Resultando a una nueva digráfica $D'=(V,A')$, donde $A'=A-\{e\}$
+
+    Entonces $D'$ tiene $m$ aristas y, por hipótesis inductiva, existe una descomposición tal que:
+
+    \begin{itemize}
+        \item $D_1'=(V,A_1')$ y $D'_2=(V,A_2')$ son subgráficas acíclicas.
+        \item $A_1'\cap A_2'=\varnothing$
+        \item $A_1'\cap A_2'=A'$
+    \end{itemize} 
+    
+    Ahora necesitamos reincorporar la arista $e$ en la descomposición. 
+
+    \begin{itemize}
+        \item Si $e$ no forma parte de un ciclo en $D'$, entonces se puede agregarla en cualesquiera de las dos subgráficas.
+        \item Si $e$ crea un ciclo al unirse a una de las subgráficas, debemos colorcarla en otra subgráfica.
+    \end{itemize}
+
+    Entonces si $e$ no forma un ciclo en $D_1'$, implica que $e$ se coloca en $D_1$, quedando como, $A_1=A_1'\cup \{e\}$. De otro modo si $e$ forma un ciclo en $D_1'$, implica que $e$ se coloca en $D_2$, como, $A_2= A_2' \cup \{e\}$.
+
+    De tal forma que dicha construcción de gráfica, las subdigráficas $D_1=(V,A_1)$ y $D_2 = (V,A_2)$ son acíclicas. Cumpliendose los terminos de la condición:
+    \begin{itemize}
+        \item $A_1\cap A_2=\varnothing$
+        \item $A_1\cup A_2 = A$ porque $A'_!\cup A_2'=A'$
+    \end{itemize}
+
+    Por inducción, hemos demostrado que cualquier digráfica sin lazos admite una descomposición en dos subdigráficas acíclicas disjuntas por aristas. $\blacksquare$
+
+  \item Un torneo es una digr\'afica en la que entre cualesquiera
+    dos v\'ertices existe una \'unica flecha.   Demuestre que todo
+    torneo con más de dos vértices es fuertemente conexo o puede
+    transformarse en un torneo fuertemente conexo al reorientar
+    exactamente una flecha.
+
+    
+    Para demostrar esto, seguiremos los siguientes pasos:
+    
+
+    Sabemos que un torneo es una gáfica dirigida donde para cualquier par de vértices distintos \( u \) y \( v \), existe exactamente un arco entre ellos, ya sea \( (u, v) \) o \( (v, u) \), y que cuando es fuertemente conexo, es que para cualquier par de vértices \( u \) y \( v \), existe un camino dirigido desde \( u \) hasta \( v \) y viceversa.
+
+        Caso base: Si el torneo tiene 3 vértices, hay dos posibilidades:
+            \begin{itemize}
+                \item {Fuertemente conexo:} Ciclos \( a \to b \to c \to a \).
+                \item {No fuertemente conexo:} Por ejemplo, \( a \to b \to c \) y \( a \to c \). Aquí, no hay camino de \( c \) a \( a \) o \( b \). Reorientando \( b \to c \) a \( c \to b \), el torneo se vuelve fuertemente conexo: \( a \to b \leftarrow c \to a \).
+            \end{itemize}
+
+    
+      Paso inductivo: 
+      
+      Supongamos que el torneo tiene \( n \geq 3 \) vértices. Si no es fuertemente conexo, entonces su grafica subyacente puede descomponerse en componentes fuertemente conexas \( T_1, T_2, \dots, T_k \) ordenadas tal que todos los arcos entre \( T_i \) y \( T_j \) (para \( i < j \)) van de \( T_i \) a \( T_j \).
+      
+      Si \( k \geq 2 \), elegimos un arco \( (u, v) \) donde \( u \in T_k \) y \( v \in T_1 \), movemos este arco a \( (v, u) \). 
+           
+                Existe un camino de \( T_1 \) a \( T_k \) a través de la reorientación.
+                Las componentes \( T_1, T_2, \dots, T_k \) se fusionan en una única componente fuertemente conexa.
+            
+       
+    
+      Por lo tanto, en cualquier torneo no fuertemente conexo, reorientar un arco específico entre dos componentes fuertemente conexas garantiza que el grafo resultante sea fuertemente conexo.
+   
+      
+
+    
+  \item Demuestre que una digr\'afica es fuertemente conexa si
+    y s\'olo si contiene un camino cerrado generador.
+    
+ \underline{Respuesta: } 
+
+($\Rightarrow$) Si es fuertemente conexa, entonces contiene un camino cerrado generador.
+
+
+Sea $G$ una digráfica fuertemente conexa con vértices $V = \{v_1, v_2, \dots, v_n\}$. Por ser fuertemente conexa, existe un camino de $v_i$ a $v_j$ para cualquier par de vértices.
+
+Construimos un camino cerrado que visita todos los vértices, comenzamos en $v_1$ y seguimos un camino a $v_2$. De $v_2$ seguimos a $v_3$, y así sucesivamente hasta $v_n$ y como $G$ es fuertemente conexa, existe un camino de $v_n$ de vuelta a $v_1$.
+   
+La concatenación de estos caminos forma un camino cerrado que visita todos los vértices.
+
+
+
+($\Leftarrow$) Si contiene un camino cerrado generador, entonces es fuertemente conexa.
+
+
+Supongamos que $G$ tiene un camino cerrado generador $C = (w_1 \to w_2 \to \dots \to w_k \to w_1)$ que pasa por todos los vértices.
+
+
+    Para cualquier par de vértices $u$ y $v$:
+    $u$ y $v$ aparecen en $C$, digamos $u = w_i$ y $v = w_j$.
+    Si $i < j$, hay un camino de $u$ a $v$ siguiendo $C$.
+    Si $i > j$, hay un camino de $u$ a $v$ siguiendo $C$ hasta $w_k$ y luego a $w_1$ hasta $w_j$.
+    
+    Por tanto, existe un camino entre cualquier par de vértices en ambas direcciones.
+
+
+
+\end{enumerate}
+
+\end{document}
+
