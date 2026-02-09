@@ -1,0 +1,465 @@
+\documentclass[12pt,letterpaper,fleqn]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{mdwlist}
+\usepackage{ upgreek }
+\usepackage{ stmaryrd }
+
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox} 
+
+\usepackage{tabu}
+
+\usepackage{mathtools}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+
+\begin{document}
+
+    \begin{titlepage}
+        \centering
+        {\scshape\LARGE Universidad Nacional Autónoma de México \par}
+    
+        \vspace{0.5cm}
+        {\scshape\LARGE Facultad de Ciencias\par}
+    
+        \begin{center}
+            \includegraphics[scale=.6]{logo.png}
+        \end{center}
+    
+        {\scshape\LARGE \textbf{Tarea 06}\par}
+        
+       \vspace{.5 cm}
+    
+        {\scshape Presentan\par}
+        \begin{center}
+            \begin{itemize}
+                \centering
+                \item Nelson Osmar Garcia Villa - 322190357
+                \item Valeria Camacho Hernández - 322007273
+                \item Mauricio Casillas Álvarez - 322196342
+            \end{itemize}
+        \end{center}
+        
+        \vspace{.5 cm}
+
+        {\scshape Asignatura \par}
+        \begin{center}
+            Gráficas y Juegos 2025-2
+        \end{center}
+
+            
+        \vspace{.5 cm}
+
+        {\scshape Profesor \par}
+
+        \begin{center}
+            César Hernández Cruz
+        \end{center}
+
+        \vspace{.5 cm}
+        
+        {\scshape Ayudante \par}
+        
+        \begin{center}
+        Iñaki Cornejo de la Mora
+        \end{center}
+        
+        \vspace{.5 cm}
+
+        {\scshape Fecha \par}
+        \begin{center}
+        Viernes 28 de marzo del 2025
+        \end{center}
+        
+        \vfill
+    \end{titlepage}
+    
+\begin{center}
+    \LARGE{\textbf{Tarea 06}}
+\end{center}
+
+
+\begin{enumerate}
+    
+        \item Sea $G$ una gr\'afica conexa no euleriana.   Demuestre que las
+		siguientes afirmaciones son equivalentes.
+		\begin{enumerate}
+			\item Hay un paseo euleriano en $G$.
+
+            $(a)\Rightarrow(b)$
+
+            Si hay un paseo euleriano en $G$ entonces hay exactamente dos vértices de grado impar en $G$.
+            
+            \underline{Respuesta:}
+
+            Sea $G$ una gráfica conexa con un paseo euleriano, es decir aquella gráfica que admite un recorrido en la gráfica usando cada arista exactamente una vez (una entrada y una salida), pero empieza y termina en vértices distintos.
+            
+            Por hipótesis sabemos que existe un paseo euleriano $T$ dentro de $G$, si $E_t=E_g$.
+            
+            Por definición sabemos que en cualquier paseo en una gráfica, cada vez que un vértice es visitado, se borra la arista de entrada, de igual forma ocurre para el de la salida. Esto implica que, cada vértice debe tener grado par (cada entrada tiene su correspondiente salida).
+            
+            Pero en un paseo euleriano, el punto de inicio y el de fin son distintos.
+            
+            Entonces si tomamos un vértice $v$ en $G$ el cual inicia el paseo y un vértice $u$ en cual acaba el paseo y por hipótesis hacemos estos dos impares. Implica que el vértice $v$ tiene una arista $e_1$ de salida sin una entrada correspondiente para visitar a otro vértice o conjunto de vértices denominado $w$, borramos la arista $e_1$ el cual se toma como entrada para $w$ y como este o estos tienen vértice grado par debe tener otra arista $e_2$ de salida para visitar el vértice $u$, borramos $e_2$, siendo $e_2$ la entrada para $u$ y como $u$ tiene una arista extra de entrada sin una salida correspondiente, terminamos el recorrido.
+            
+            $\therefore$ Estos dos vértices tienen grado impar, mientras que todos los demás vértices mantienen grado par.$\blacksquare$
+
+            
+			\item Hay exactamente dos v\'ertices de grado impar en $G$.
+
+            $(b)\Rightarrow(c)$
+
+            Si hay exactamente dos vértices de grado impar en $G$ entonces existe una familia de ciclos ajenos por aristas dos a dos $\{
+				C_i \}_{i=1}^k$ y un paseo $P$, ajeno por aristas a cada uno de
+				los ciclos en la familia anterior, tales que $E_G = E_P \cup
+				\bigcup_{i=1}^k E_{C_i}$.
+
+            \underline{Respuesta:}
+
+            Sabemos que $G$ tiene exactamente dos vértices de grado impar $u$ y $v$, de igual forma un paseo euleriano en $G$, que comienza en $u$ y termina en $v$ denominado.
+            
+            Por definición, $P$ pasa por todas las aristas de $G$ exactamente una vez, es decir $E(P)\in E(G)$.
+            
+            Además, como $G$ es conexa y $P$ recorre todas sus aristas, cualquier otra estructura dentro de $G$ debe de estar contenida en ciclos que no están contenidas en $P$.
+            
+            Cada conjunto de vértices o vértice lo denominaremos $w$ tal que $w \neq u,v$ tiene grado par, entonces cuando $P$ pasa por $w$, entra por una arista y sale por otra. 
+            
+            Pero cuando exista alguna arista que no sea adyacente a $P$, forman ciclos en $G$, ya que $G$ es conexa, es decir cuando recorramos el paseo $P$ empezando por $u$, pasando por el vértice o conjunto de vértices $w$, sabemos que cada vértice diferente de $u,v$ tiene grado par, por lo que si $u$ es adyacente a $w$, y este tiene grado par implica que haya un conjunto de vértices en $w$ y un conjunto de aristas de $e$, las cuales empiezan en $w$ y terminan en $w$ para mantener el grado de vértices par, entonces por definición es un ciclo.
+            
+            Cómo podemos obtener ciclos con los vértices que no estén dentro del paseo $P$ se pueden descomponer ciclos $C_1,C_2,...,C_k$, que no comparten aristas entre así.
+            
+            Si $P$ usa todas las aristas que no pertenecen a los ciclos, la unión de $P$ con los ciclos forma toda la gráfica $G$, $E_G = E_P \cup
+				\bigcup_{i=1}^k E_{C_i}$. 
+
+            $\therefore (b) \Rightarrow (c)$ 
+
+			\item Existe una familia de ciclos ajenos por aristas dos a dos $\{
+				C_i \}_{i=1}^k$ y un paseo $P$, ajeno por aristas a cada uno de
+				los ciclos en la familia anterior, tales que $E_G = E_P \cup
+				\bigcup_{i=1}^k E_{C_i}$.
+
+            $(c)\Rightarrow(a)$
+
+            Si Existe una familia de ciclos ajenos por aristas dos a dos $\{
+				C_i \}_{i=1}^k$ y un paseo $P$, ajeno por aristas a cada uno de
+				los ciclos en la familia anterior, tales que $E_G = E_P \cup
+				\bigcup_{i=1}^k E_{C_i}$, entonces hay un paseo euleriano en $G$.
+            
+            \underline{Respuesta:}
+
+            Dado que cada ciclo tiene todos sus vértices con grado par dentro del ciclo, si $G$ fuera simplemente la unión disjunta de estos ciclos, todos los vértices tendrían grado par, y por definición $G$ tendría un circuito euleriano, lo cual rompe con la característica principal.
+            
+            Pero como $G$ es conexa, debe tener una forma de recorrer todas las aristas, implica que los ciclos están unidos entre sí mediante algunos vértices compartidos.
+            
+            Sabemos que una gráfica tiene un paseo euleriano si y sólo si tiene exactamente dos vértices de grado impar y es conexa.
+            
+            $G$ es conexa y la estructura de sus ciclos permite recorrer cada arista una sola vez teniendo una arista extra como salida, se puede ver el paseo euleriano de tal forma que inicia en el vértice $u$ que es de grado impar, se recorre la gráfica eligiendo aristas disponibles sin repetirlas, como cada ciclo permite entrar y salir de un vértice, siempre es posible continuar el recorrido hasta que todas las aristas sean usadas y como hay dos vértices de grado impar, el recorrido debe terminar en el otro vértice impar.
+    
+            $\therefore (c) \Rightarrow(a)$
+            
+            
+		\end{enumerate}
+
+
+	\item Sea $D$ una digr\'afica conexa. Demuestre que $D$ es euleriana si y
+		s\'olo si  para cada $v \in V_D$, se tiene $d^+(v) = d^-(v)$.
+
+        \underline{Respuesta:} Sea $D$ una digráfica conexa. 
+
+        $\Longrightarrow$) Supongamos $D$ es euleriano. 
+        Entonces tenemos un ciclo euleriano, es decir,un camino cerrrado que empieza y termina
+        en el mismo vértice y que recorre todas las aristas exactamente una sola vez siguiendo
+        sus direcciones.
+        
+        Como este ciclo no se desconecta ni deja aristas sin usar, cada vez que el camino entra a un vértice, 
+        debe salir por otra arista distinta.
+        Veamos esto en dos casos:
+        
+        Caso 1: Para todo vértice $v \in D$ que no sea el inicial ni el final.
+        Cada vez que el camino entra a $v$ a través de una arista, necesita salir por otra arista
+        diferente. Como el cmaino euleriano usa todas las aristas exactamente una vez,
+        el número de aristas que entran a $v$ es igual al número de aristas que salen. Entonces
+         $d^+(v) = d^-(v)$ y  $d^-(v) = d^+(v)$.
+        
+        Caso 2: El vértice $v \in D$ es el inicial y final.
+        Sea el vértice $v_{0}$ en el que el ciclo empieza. Entonces el camino empieza en $v_{0}$, así
+        que usa una arista que sale. Luego, como el ciclo es cerrado, en algún momento debe segregsar a $v_{0}$,
+        por una arista que entra. Estas dos aristas (la de salida y la de entrada), se
+        cancelan en la suma de los grados. Entonces $d^+(v_{0}) = d^-(v_{0})$ y $d^-(v_{0}) = d^+(v_{0})$.
+        
+        $\therefore$  Para todo vértice $v \in D$, $d^+(v) = d^-(v)$.
+        
+        $\Longleftarrow$) Procedamos por inducción sobre el número de aristas.
+        
+        \underline{Casos base:} Sea $n$ el número de vértices en la digráfica $D$.
+        \begin{itemize}
+        	\item Si $n = 1$, no hay un ciclo euleriano pues no hay nada que recorrer.
+        	\item Si $n = 2$, hay un ciclo de longitud $2$, el cual es euleriano.
+        \end{itemize} 
+        
+        Entonces, consideramos $n \geq 2$.
+        
+        \underline{Hipótesis de Inducción:} Supongamos que para toda digráfica conexa con menos de $m$ aristas, en la que 
+        $d^+(v) = d^-(v)$ para todo $v$, tiene un ciclo euleriano.
+        
+        \underline{Paso Inductivo:}
+        Por demostrar: $D$ tiene un ciclo euleriano.
+        
+        Como $D$ es conexa y $d^+(v) = d^-(v) \geq 1$ para todo $v$, podemos construir un ciclo $C$ en $D$. 
+        Este ciclo existe porque si seguimos cualquier arista, eventualmente repetimos un vértice, el cual 
+        nos indica es el inicial y el final.
+        
+        Quitamos el ciclo $C$ de $D$ y obtenemos una digráfica $D' = D - C$ con $m'$ aristas. Ahora veamos 
+        sus aristas. En $D'$, cada vértice en $C$ tenía una entrada y una salida en $C$, así que al quitarlo, 
+        sigue cumpliéndose que $d^+(v) = d^-(v)$ en cada vértice (pues por hipótesis es conexa), pero 
+        $D'$, con $m'$ aristas, tiene menos de $m$ aristas ($m' < m$). 
+        
+        Entonces tenemos dos casos para $D'$:
+        
+        Caso 1: Si $D'$ es conexa, entonces solo tiene una componente, aplicamos hipótesis de inducción 
+        y así obtenemos un ciclo euleriano en $D'$. Como $D$ es conexa por hipótesis, $D'$ y $C$ comparten
+        al menos un vpertice. Entonces insertamos a $D'$ en $C$ en el vértice que tienen en común, con 
+        lo que obtenemos un único ciclo que cubre todas las aristas de $D$.
+        
+        Caso 2: Si $D'$ tiene varias componentes conexas (es decir, $D'$ no es conexa después de eliminar a $C$), aplicamos hipótesis de inducción a cada componente, para que cada una tenga un ciclo euleriano. 
+        
+        Como $D$ era conexa por hipótesis (antes de quitar a $C$), entonces cada componente de $D'$ debe compartir al menos un vértice con $C$. Procedo a insertar cada ciclos $C_{i}$ de cada componente en $C$ 
+         en los vertices que compartan.
+        
+        En ambos casos, obtenemos un único ciclo euleriano que cubre todas las aristas de $D$.
+        
+        $\therefore$ Para cada vértice $v$ en $C$, se cumple que $d^+_{D´}(v) = d^-_{D}(v)$.
+        
+        Por lo tanto, $D$ tiene un ciclo euleriano si es coenxa y $d^+_{D´}(v) = d^-_{D}(v)$ para cada uno de sus vertices. $\bigstar$ 
+        
+	\item La digr\'afica de {\em de Bruijn-Good} $BG_n$ tiene como conjunto de
+		v\'ertices al conjunto de todas las sucesiones binarias de longitud $n$,
+		y donde el v\'ertice $a_1 a_2 \cdots a_n$ es adyacente al v\'ertice $b_1
+		b_2 \cdots b_n$ si y s\'olo si $a_{i+1} = b_i$ para $1 \le i \le n-1$.
+		Demuestre que $BG_n$ es una digr\'afica euleriana de orden $2^n$ y
+		di\'ametro dirigido $n$.
+
+        \underline{Respuesta:} Por def. como los vértices de \( BG_n \) corresponden a todas las secuencias binarias de longitud \( n \). Dado que cada posición en la secuencia puede ser \( 0 \) o \( 1 \), el número total de vértices es: $|V(BG_n)| = 2^n.$
+            
+        \begin{itemize}
+            \item Grado de salida $d^+(v)$ :Para un vértice \( v = a_1a_2 \cdots a_n \), una arista sale de \( v \) hacia un vértice de la forma \( a_2a_3 \cdots a_n b \), donde \( b \in \{0, 1\} \). Como hay 2 opciones para \( b \), se tiene: $d^+(v) = 2.$
+            \item Grado de entrada \( d^-(v) \): Un vértice \( v = b_1b_2 \cdots b_n \) tiene aristas entrantes desde vértices de la forma \( a b_1b_2 \cdots b_{n-1} \), con \( a \in \{0, 1\} \). Nuevamente, hay 2 opciones para \( a \), por lo que: $d^-(v) = 2.$
+        \end{itemize}  
+
+    Como \( d^+(v) = d^-(v) = 2 \) para todo \( v \in V(BG_n) \), la digráfica \( BG_n \) esto implica que por def. es balanceada y cumple la condición necesaria para ser euleriana.
+
+    La digráfica \( BG_n \) es fuertemente conexa. Para cualquier par de vértices \( u = u_1u_2 \cdots u_n \) y \( v = v_1v_2 \cdots v_n \), existe un camino dirigido de \( u \) a \( v \). Este camino puede construirse de la siguiente manera:
+    \[
+    u_1u_2 \cdots u_n \rightarrow u_2u_3 \cdots u_n v_1 \rightarrow u_3 \cdots u_n v_1 v_2 \rightarrow \cdots \rightarrow v_1 v_2 \cdots v_n.
+    \]
+    Este camino tiene longitud \( n \), lo que también implica que el diámetro dirigido es \( n \).
+    
+    El diámetro dirigido de \( BG_n \) por def. es la máxima distancia más corta entre cualquier par de vértices. Ya sabemos que el camino más largo posible entre dos vértices tiene longitud \( n \). Por lo tanto el iámetro dirigido de $BG_n = n.$
+    
+    Una digráfica es euleriana si y solo si es fuertemente conexa y para todo vértice $v$, 
+    $d^+(v) = d^-(v)$. Dado que: \( BG_n \) es fuertemente conexa y para todo \( v \in V(BG_n) \), \( d^+(v) = d^-(v) = 2 \), podemeos concluir que \( BG_n \) es una digráfica euleriana.
+
+    Por lo tanto la digráfica de de Bruijn-Good \( BG_n \) es una digráfica euleriana de orden \( 2^n \) y diámetro dirigido \( n \), ya que tiene \( 2^n \) vértices, es fuertemente conexa, 3) para todo vértice \( v \), \( d^+(v) = d^-(v) = 2 \) (lo que por def. garantiza la existencia de un circuito euleriano), y, el diámetro dirigido es \( n \) ya que el camino más largo entre dos vértices tiene longitud \( n \). $\blacksquare$
+
+	\item Demuestre que existe una forma de ordenar todas las fichas de domin\'o
+		en un ciclo (respetando las reglas del juego). ?`C\'omo generalizar\'ia
+		este resultado para domin\'os con $n$ puntos? (el domin\'o est\'andar es
+		el de $6$ puntos).
+
+        \underline{Respuesta:} En un dominó estándar, cada una de las $28$ fichas puede representarse como una pareja ordenada $(a,b)$, donde $a$ y $b$ son elementos del conjunto ${0, 1, 2, 3, 4, 5, 6}$. Los números $a$ y $b$ pueden ser iguales, y es importante notar que cada número aparece exactamente $8$ veces en el conjunto de las $28$ fichas, incluido el mismo número. Es decir, por cada número $a$ del conjunto, hay $8$ fichas que contienen ese número en alguno de sus dos lados. 
+
+        \begin{center}
+            \includegraphics[scale=.6]{fichas.jpg}
+        \end{center}
+
+        Lo que queremos encontrar es una forma de organizar todas las fichas en un ciclo, de manera que se respeten las reglas del juego: las partes adyacentes de las fichas deben coincidir. Esto significa que, al colocar las fichas en el ciclo, las aristas que las conectan deben tener un número común en sus extremos, de tal forma que $(a,b)$ se conecte con otra ficha $(b,c)$.
+        
+        Ahora veamos su representación como una gráfica, en la cual, cada número del conjunto  ${0, 1, 2, 3, 4, 5, 6}$ se representa como un vértice y cada ficha $(a,b)$ se representa como una arista que conecta los vértices. Notemos que cada número aparece en exactamente $8$ fichas, entonces cada vértice tendrá exactamente $8$ conexiones, pues cada número aparece $8$ veces en las fichas.
+        
+        \begin{center}
+            \includegraphics[scale=.6]{grafica.jpg}
+        \end{center}
+        
+        Notemos, tenemos que el número de aristas que salen de cada vértice es par. Entonces, podemos recorrer el ciclo desde cualquier ficha (vértice inicial) y continuar hasta llegar a la misma ficha (vértice final) que son la misma, utilizando cada arista una sola vez. Este ciclo recorrerá todas las fichas del dominó de manera que cada ficha se conecta a la siguiente respetando las reglas del juego. Además, notemos que es conexa, pues cada número del $0$ al $6$ está conectado con otros números, no hay vértices aislados en la gráfica. Por lo tanto, si es posible organizar todas las fichas en un ciclo euleriano.
+        
+        Proponemos:
+        \begin{center}
+            \includegraphics[scale=.6]{ciclo.png}
+        \end{center}
+        
+        Ahora veamos cómo generalizar este resultado para un dominó con $n$ puntos. En un dominó con $n$ puntos de cada lado, el número de veces que aparece el número $a$ en las fichas será $n+1$, ya que este número $a$ puede formar una ficha, es decir, una pareja ordenada $(a,b)$, con cada uno de los números en el conjunto ${0, 1, 2, \dots, n}$, incluido el mismo.
+
+        Veamos algunos casos:
+        
+        $(0, b); \quad a=0 \Longrightarrow m = 0+1= 1$
+
+        $(1, b); \quad a=1 \Longrightarrow 1+1 = 2$
+        
+        $(2, b); \quad a=2 \Longrightarrow 2+1 = 3$
+        
+        $(3, b); \quad a=3 \Longrightarrow 3+1 = 4$
+        
+        $(4, b); \quad a=4 \Longrightarrow 4+1 = 5$
+        
+        $(5, b); \quad a=5 \Longrightarrow 5+1 = 6$
+        
+        $(6, b); \quad a=6 \Longrightarrow 6+1 =7$
+        
+        Observemos que el número de veces que aparece cada número es siempre $n+1$, independientemente del valor de $a$.
+        
+        Notemos que $n$ es impar, entonces $n+1$ es par, y que si $n$ es par, entonces $n+1$ es impar. Esto significa que cuando $n$ es impar, cada número en el conjunto ${0,1,2, \dots, n}$ aparece en un número par de fichas, lo que garantiza que el grado de cada vértice en la gráfica sea par. Dado que todos los vértices tienen grado par, existe un ciclo euleriano, lo que nos permite organizar las fichas en un ciclo que respeta las reglas del juego. Por otro lado, si $n$ es par, cada número aparece en un número impar de fichas, lo que implica que cada vértice en la gráfica tiene grado impar. En este caso, no se puede garantizar la existencia de un ciclo euleriano, lo que significa que no siempre es posible ordenar todas las fichas en un ciclo. $\bigstar$ 
+        
+    \item Una digr\'afica $D$ es {\em balanceada} si $|d^+(v) - d^-(v)| \le 1$,
+		para cada $v \in V$.   Demuestre que toda gr\'afica tiene una
+		orientaci\'on balanceada.
+
+        \underline{Respuesta:} Sea $D$ cualquier gráfica no dirigida. 
+
+        Por demostrar: Existe una orientación de manera que todo vértice tenga tenga casi el mismo número de entradas y salidas. Es decir, $|d^+(v) - d^-(v)| \le 1$, lo que significa que la diferencia entre cuántas aristas entran y cuántas salen de un vértice nunca puede ser mayor a 1.
+        
+        Veamos dos casos.
+        
+        Caso 1: Si $D$ es un ciclo. Entonces simplemente escogemos una dirección: horaria o antihoraria, y seguimos esa dirección en todo el ciclo. Como cada vértice está en un ciclo, cada uno tiene exactamente una arista de entrada y una de salida. Es decir, para cada vértice $v$ sucede $|d^+(v) - d^-(v)| = 0$ y $0 \le 1$
+        
+        $\therefore$ La orientación del ciclo es balanceada.
+        
+        Caso 2: Si $D$ no es un ciclo, es decir, es un árbol.
+        
+        Entonces tiene $n$ vértices con $n-1$ aristas y existe un camino entre cualquier par de vértices del árbol.
+        
+        Lo que queremos es orientar a las aristas de manera que ningún vértice termine con michas más aristas entrantes que salientes, o viceversa. Queremos que la cantidad de aristas que entran y salen de cada vértice sea casi la misma, con una diferencia de máximo $1$.
+        
+        Procedemos de la siguiente forma: 
+        
+        Comenzamos por las hojas, es decir, los vértices de grado $1$. Como cada hoja tiene una arista conectada a otro vértice (por definición de hoja), es decir, a su padre, entonces, orientamos a esa arista hacia su vértice vecino, es decir, la vértice al que está conectado la hoja, el cual es el padre. 
+        
+        Luego, avanzamos por el árbol de manera que cada vez que orientamos una arista a su vértice vecino, y este (que ahora es padre) tiene una arista menos que falta por orientar. Si después de este proceso el padre se convierte en una nueva hoja (porque ahora tiene solo una arista que falta por orientar), repetimos el proceso hasta que todas las aristas tengan un dirección.
+        
+        Ahora, si $D$ es un bosque, es decir, un conjunto de árboles, podemos aplicar el mismo método a cada árbol por separado. Como los árboles no están conectados entre sí, no hay problema alguno entre las orientaciones de diferentes árboles.
+        
+        Así, cada árbol tiene una orientación balanceada y, como los bosques son simplemente unión disjunta de árboles, toda la gráfica también lo tiene.
+        
+        $\therefore$ La orientación de cada árbol es balanceada. $\bigstar$
+        \end{enumerate} 
+
+\section*{Puntos Extra}
+
+\begin{enumerate}
+	\item Sean $G$ una gr\'afica euleriana no trivial y $u \in V_G$. Demuestre
+    	que todo paseo en $G$ que inicia en $u$ se puede extender a un circuito
+    	euleriano si y s\'olo si $G-u$ es ac\'iclica.
+
+        \underline{Respuesta:} 
+        
+        $\Rightarrow]$ Suponemos por contrapositiva, si el paseo en $G$ que comienza en $u$ no se puede extender a un circuito euleriano, entonces $G - u$ no es acíclica.
+
+        Supongamos que el paseo en $G$ que comienza en $u$ no se puede extender a un circuito euleriano. Es decir, no existe un recorrido en $G$ que pase por todas sus aristas exactamente una vez y regrese a $u$.
+        
+        Sin embargo, para que $G$ sea euleriano, cada vértice en $G$ debe tener grado par, lo que sugiere que $G - u$ debe tener una estructura que permita conectar todas sus aristas en un solo recorrido sin repetirlas.
+        
+        Si $G - u$ contiene ciclos, entonces hay un subconjunto de aristas en $G$ que forma un recorrido cerrado sin pasar por $u$. Implica que el paseo desde $u$ pueda recorrer todas las aristas de $G$ sin repeticiones, contradiciendo la existencia de un circuito euleriano.
+
+        Por lo tanto, si el paseo no se puede extender a un circuito euleriano, $G - u$ debe contener ciclos, es decir, $G - u$ no es acíclica. 
+
+        $[\Leftarrow$ Si $G - u$ fuera acíclica, es decir, si contuviera al menos un ciclo, entonces habría un subconjunto de aristas que forman un ciclo sin involucrar a $u$.
+        
+        Esto significaría que hay aristas en $G$ que se recorren en un ciclo interno sin incluir a $u$, entonces no es posible la formación de un recorrido euleriano global que incluya a todas las aristas de $G$ en un solo circuito, ya que en un circuito euleriano, no puede haber ciclos internos que no estén conectados al vértice $u$ de alguna manera, por la existencia de un ciclo de $G-u$, entonces el recorrido de todas las aristas no es posible sin repetir alguna arista del ciclo $G-u$. Esto hace que el circuito no pueda ser extendido para cubrir todas las aristas de $G$ lo cual rompe con la condición de recorrer cada arista exactamente una vez.
+        
+        Esto implica que $G - u$ no debe contener ciclos, es decir, $G - u$ es acíclica. $\blacksquare$
+
+
+	\item Una sucesi\'on circular $s_1 s_2 \cdots s_{2^n}$ de ceros y unos es
+		llamada una {\em sucesi\'on de de Bruijn-Good} de orden $n$ si las $2^n$
+		subsucesiones $s_i s_{i+1} \cdots s_{i+n-1}$, $1 \le i \le 2^n$ (con los
+		sub\'indices tomados m\'odulo $2^n$ son distintas, y por lo tanto
+		constituyen todas las posibles sucesiones binarias de longitud $n$.
+		Por ejemplo, la sucesi\'on $00011101$ es una una sucesi\'on de de
+		Bruijn-Good de orden tres.   Muestre como encontrar un de estas
+		sucesiones para cualquier orden $n$ utilizando un circuito euleriano
+		dirigido en la gr\'afica de de Bruijn-Good $BG_{n-1}$. Justifique su
+		respuesta.
+
+        \underline{Respuesta:} {Procedemos por construcción de  \( BG_{n-1} \):}
+    \begin{itemize}
+        \item Los vértices de \( BG_{n-1} \) son todas las secuencias binarias de longitud \( n-1 \).
+        \item Hay una arista dirigida del vértice \( a_1a_2 \cdots a_{n-1} \) al vértice \( b_1b_2 \cdots b_{n-1} \) si y solo si \( a_{i+1} = b_i \) para \( 1 \leq i \leq n-2 \). Esto implica que \( b_1b_2 \cdots b_{n-1} = a_2a_3 \cdots a_{n-1}c \), donde \( c \in \{0, 1\} \) y arista se etiqueta con \( c \), el último bit del vértice destino.
+    \end{itemize}
+
+    {Sabemos que las ropiedades de \( BG_{n-1} \) son:}
+    \begin{itemize}
+        \item  Para cualquier vértice \( v = a_1a_2 \cdots a_{n-1} \), hay dos aristas salientes y dos aristas entrantes, esto implica que es euleriana por def. Como \( BG_{n-1} \) es euleriana, existe un circuito euleriano que recorre cada arista exactamente una vez.
+    \end{itemize}
+
+    {Sabiendo esto, podemos construir la sucesión}
+    \begin{itemize}
+        \item Sea \( C \) un circuito euleriano en \( BG_{n-1} \).
+        \item Iniciamos en un vértice arbitrario \( v_0 \) y seguimos \( C \), registrando los bits de las aristas recorridas.
+        \item La sucesión \( S \) se forma concatenando estos bits en el orden del circuito.
+        \item Dado que \( C \) pasa por todas las aristas, \( S \) tendrá longitud \( 2^n \) esto ya que hay \( 2^n \) aristas en \( BG_{n-1} \).
+    \end{itemize}
+
+   
+    \begin{itemize}
+        \item Cada subsucesión de \( n \) bits en \( S \) corresponde a un vértice único en \( BG_{n-1} \). Esto se debe a que:
+        \begin{itemize}
+            \item Los primeros \( n-1 \) bits de la subsucesión definen un vértice.
+            \item El siguiente bit define la transición a otro vértice, cubriendo todas las combinaciones posibles.
+        \end{itemize}
+        \item Por lo tanto, todas las \( 2^n \) subsucesiones de longitud \( n \) son distintas y cubren todas las secuencias binarias posibles.
+    \end{itemize}
+
+    {Ejemplo para \( n = 3 \)}
+
+    \begin{itemize}
+        \item Construimos \( BG_{2} \):
+        \begin{itemize}
+            \item Vértices: 00, 01, 10, 11.
+            \item Aristas:
+            \begin{itemize}
+                \item 00 \(\rightarrow\) 00 (bit 0), 00 \(\rightarrow\) 01 (bit 1)
+                \item 01 \(\rightarrow\) 10 (bit 0), 01 \(\rightarrow\) 11 (bit 1)
+                \item 10 \(\rightarrow\) 00 (bit 0), 10 \(\rightarrow\) 01 (bit 1)
+                \item 11 \(\rightarrow\) 10 (bit 0), 11 \(\rightarrow\) 11 (bit 1)
+            \end{itemize}
+        \end{itemize}
+        \item Un circuito euleriano posible: 00 \(\rightarrow\) 00 (0) \(\rightarrow\) 01 (1) \(\rightarrow\) 11 (1) \(\rightarrow\) 11 (1) \(\rightarrow\) 10 (0) \(\rightarrow\) 01 (1) \(\rightarrow\) 10 (0) \(\rightarrow\) 00 (0).
+        \item La sucesión resultante es 01110100, que es una sucesión de de Bruijn-Good de orden 3.
+    \end{itemize}
+    
+    Por lo tanto,  construcción de un circuito euleriano en \( BG_{n-1} \) proporciona directamente una sucesión de de Bruijn-Good de orden \( n \) al concatenar los bits de las aristas recorridas. Esto garantiza que todas las subsucesiones de longitud \( n \) sean únicas y cubran todas las posibilidades binarias. $\blacksquare$
+
+
+	\item Sea $G$ una gr\'afica conexa, y sea $X$ el conjunto de v\'ertices de
+		$G$ de grado impar.   Suponga que $|X| = 2k$, con $k \ge 1$.
+		\begin{enumerate}
+			\item Demuestre que hay $k$ paseos ajenos por aristas $Q_1, \dots,
+				Q_k$ en $G$ tales que $E_G = \bigcup_{i=1}^k E_{Q_i}$.
+
+                        \underline{Respuesta:} Como $|X| = 2k$, podemos emparejar los vértices de $X$ en $k$ pares $(u_1,v_1),\ldots,(u_k,v_k)$.
+        
+                        Suponemos una nueva gráfica $G'$ añadiendo a $G$ $k$ aristas nuevas $e_1,\ldots,e_k$, donde cada $e_i$ conecta $u_i$ con $v_i$. En $G'$, todos los vértices tienen grado par, pues hemos eliminado todos los vértices de grado impar al emparejarlos. Como $G'$ es conexa y todos sus vértices tienen grado par, implica que existe un circuito euleriano $C$ en $G'$.
+                   
+                        Al remover las aristas añadidas $e_1,\ldots,e_k$ del circuito $C$, este se descompone en $k$ paseos $Q_1,\ldots,Q_k$ en $G$, donde cada $Q_i$ conecta $u_i$ con $v_i$. Estos paseos son ajenos por aristas y cubren todas las aristas de $G$. $\blacksquare$
+                
+			\item Deduza que $G$ contiene $k$ paseos ajenos por aristas que
+				conectan a los v\'ertices de $X$ en pares.
+                
+                    \underline{Respuesta:} Por $(a)$ tenemos $k$ paseos ajenos por aristas $Q_1,\ldots,Q_k$ que cubren $E_G$. Cada $Q_i$ conecta un par de vértices $(u_i,v_i)$ de $X$, pues fueron obtenidos al remover las aristas que conectaban estos pares en $G'$.
+                    
+                    Como los $Q_i$ son ajenos por aristas y cubren $E_G$, tenemos exactamente $k$ paseos que conectan los $k$ pares de vértices de $X$ sin compartir aristas. $\blacksquare$
+
+		\end{enumerate}
+\end{enumerate}
+
+\end{document}
+
